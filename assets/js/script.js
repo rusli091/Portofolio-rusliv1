@@ -114,7 +114,6 @@ for (let i = 0; i < filterBtn.length; i++) {
 }
 
 
-
 // contact form variables
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
@@ -135,7 +134,25 @@ for (let i = 0; i < formInputs.length; i++) {
   });
 }
 
+// add event to form submit button
+formBtn.addEventListener("click", function (event) {
+  event.preventDefault(); // prevent form submission
 
+  // Display name and chat in a container
+  const contactName = contactNameInput.value;
+  const contactChat = contactChatInput.value;
+
+  if (contactName && contactChat) {
+    const chatMessage = document.createElement("div");
+    chatMessage.innerHTML = `<strong>${contactName}:</strong> ${contactChat}`;
+    chatContainer.appendChild(chatMessage);
+
+    // Optionally, clear the form inputs after submission
+    contactNameInput.value = "";
+    contactChatInput.value = "";
+  }
+});
+}
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
